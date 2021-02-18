@@ -1,4 +1,4 @@
-const display = document.getElementById("display");
+const display = document.getelementbyid("display");
 const buttons = document.getElementById("buttons");
 
 buttons.addEventListener("click", e => {
