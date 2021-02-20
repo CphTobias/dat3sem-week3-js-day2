@@ -18,7 +18,7 @@ buttons.addEventListener("click", e => {
   display.innerText = newDisplay;
 });
 
-function calculate() {
+function calculateResult() {
   let calculation = "";
   currentDisplay.forEach((item, idx) => {
     if (Number(currentDisplay[idx - 1])) {
@@ -31,7 +31,7 @@ function calculate() {
           : calculateCurrentNumbers;
         currentDisplay[idx - 1] = "" + calculateCurrentNumbers;
         currentDisplay.splice(idx, idx + 1);
-        calculate();
+        calculateResult();
       }
     }
     console.log(currentDisplay);
@@ -43,5 +43,5 @@ function calculate() {
 //Is not setup to calculate multuply and devide first, the rest works... I think
 const calculate = document.getElementById("calculate");
 calculate.addEventListener("click", () => {
-  calculate();
+  calculateResult();
 });
