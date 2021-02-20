@@ -3,39 +3,32 @@ const buttons = document.getElementById("buttons");
 
 let currentDisplay = [];
 buttons.addEventListener("click", e => {
-  console.log(e.target.innerText);
-  if (e.target.innerText === "=") return;
-  let newDisplay = display.innerText;
-  if (Number(e.target.innerText)) {
+  const target = e.target.innerText;
+  if (target === "=") return;
+  if (Number(target)) {
     currentDisplay.length > 0
       ? (currentDisplay[currentDisplay.length - 1] =
-          currentDisplay[currentDisplay.length - 1] + e.target.innerText)
-      : currentDisplay.push(e.target.innerText);
+          currentDisplay[currentDisplay.length - 1] + target)
+      : currentDisplay.push(target);
   } else {
-    currentDisplay = [...currentDisplay, e.target.innerText, ""];
+    currentDisplay = [...currentDisplay, target, ""];
   }
-  newDisplay = newDisplay + e.target.innerText;
+  let newDisplay = display.innerText;
+  newDisplay = newDisplay + target;
   display.innerText = newDisplay;
 });
 
 function calculateResult() {
-  let calculation = "";
   currentDisplay.forEach((item, idx) => {
-    if (Number(currentDisplay[idx - 1])) {
-      if (!Number(item)) {
-        const calculateCurrentNumbers = eval(
-          currentDisplay[idx - 1] + item + currentDisplay[idx + 1]
-        );
-        calculation = Number(calculation)
-          ? calculation + calculateCurrentNumbers
-          : calculateCurrentNumbers;
-        currentDisplay[idx - 1] = "" + calculateCurrentNumbers;
-        currentDisplay.splice(idx, idx + 1);
-        calculateResult();
-      }
+    if (!Number(item)) {
+      const calculateCurrentNumbers = eval(
+        currentDisplay[idx - 1] + item + currentDisplay[idx + 1]
+      );
+      currentDisplay[idx - 1] = "" + calculateCurrentNumbers;
+      currentDisplay.splice(idx, idx + 1);
+      console.log(currentDisplay);
+      calculateResult();
     }
-    console.log(currentDisplay);
-    console.log(calculation);
   });
   display.innerText = currentDisplay[0];
 }
