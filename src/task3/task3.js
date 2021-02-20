@@ -3,9 +3,7 @@ const root = document.getElementById("root");
 let people = ["Lars", "Per", "Jens", "Jon"];
 
 function createListItems(array) {
-  let list = "";
-  array.map(item => (list = list + `<li>${item}</li>`));
-  return list;
+  return array.map(item => `<li>${item}</li>`).join("");
 }
 
 function addLi(array) {

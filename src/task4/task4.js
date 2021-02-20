@@ -8,19 +8,18 @@ var cars = [
 
 function createTable(cars) {
   function createFromArray() {
-    let tableRows = "";
-    cars.map(
-      item =>
-        (tableRows =
-          tableRows +
+    const tableRows = cars
+      .map(
+        item =>
           `<tr>
     <th scope="row">${item.id}</th>
     <td>${item.year}</td>
     <td>${item.make}</td>
     <td>${item.model}</td>
     <td>${item.price}</td>
-  </tr>`)
-    );
+  </tr>`
+      )
+      .join("");
 
     return `<table class="table">
     <thead>

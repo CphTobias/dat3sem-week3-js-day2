@@ -40,16 +40,15 @@ getOne.addEventListener("click", () => {
 
 // 2)
 function getAllUsers(data) {
-  let listRows = "";
-  data.map(
-    user =>
-      (listRows =
-        listRows +
+  const listRows = data
+    .map(
+      user =>
         `<tr>
       <td>${user.name}</td>
       <td>${user.phone}</td>
-      </tr>`)
-  );
+      </tr>`
+    )
+    .join("");
   return `<table class="table">
     <thead>
       <tr>
